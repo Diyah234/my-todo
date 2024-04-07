@@ -12,17 +12,17 @@ import { useEffect } from 'react';
 function App() {
   // State hooks to manage input text, todo items, and filter
   const [inputText, setInputText] = useState('');
-  //const storedItems = JSON.parse(localStorage.getItem('items'))
-  const [items, setItems] = useState([]);
+  const storedItems = JSON.parse(localStorage.getItem('items'))
+  const [items, setItems] = useState(storedItems);
   const [filter, setFilter] = useState('All');
 
 
   const [lightMode, setLightMode] = useState(false);
-  // useEffect(() =>{
-  //   localStorage.setItem('items', JSON.stringify(items))
+  useEffect(() =>{
+    localStorage.setItem('items', JSON.stringify(items))
     
 
-  // }, [items])
+  }, [items])
 
   const handleLightModeChange = () => {
     setLightMode(!lightMode);
