@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
-import '../style.css';
-import dark from '../images/bg-desktop-dark.jpg';
-import sun from '../images/icon-sun.svg';
-import cross from '../images/icon-cross.svg';
-import mobiledark from '../images/bg-mobile-dark.jpg';
-import light from '../images/bg-desktop-light.jpg';
-import mobilelight from '../images/bg-mobile-light.jpg';
+import { useState } from 'react';
+import dark from '../src/images/bg-desktop-dark.jpg';
+import sun from '../src/images/icon-sun.svg';
+import cross from '../src/images/icon-cross.svg';
+import mobiledark from '../src/images/bg-mobile-dark.jpg';
+import light from '../src/images/bg-desktop-light.jpg';
+import mobilelight from '../src/images/bg-mobile-light.jpg';
+
+import './App.css';
+import { useEffect } from 'react';
 
 function App() {
   // State hooks to manage input text, todo items, and filter
   const [inputText, setInputText] = useState('');
+  //const storedItems = JSON.parse(localStorage.getItem('items'))
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState('All');
 
+
   const [lightMode, setLightMode] = useState(false);
+  // useEffect(() =>{
+  //   localStorage.setItem('items', JSON.stringify(items))
+    
+
+  // }, [items])
 
   const handleLightModeChange = () => {
     setLightMode(!lightMode);
@@ -89,14 +98,14 @@ function App() {
   let darkModeMobile;
   let lightModelMobile;
 
-  if (mobile === true) {
+  if (mobile.matches) {
     darkModeMobile = `url(${mobiledark})`;
     lightModelMobile = `url(${mobilelight})`;
   } else {
     darkModeMobile = `url(${dark})`;
     lightModelMobile = `url(${light})`;
   }
- 
+
   return (
     <div
       style={{
@@ -111,34 +120,48 @@ function App() {
         style={{
           backgroundImage: lightMode ? lightModelMobile : darkModeMobile,
           backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
           flex: 1,
-        }}className='bg'
+        }}
+        className="bg"
       ></div>
       <div
         style={{
-          backgroundColor: lightMode ? 'hsl(236, 33%, 92%)' : 'hsl(235, 21%, 11%)',
+          backgroundColor: lightMode
+            ? 'hsl(236, 33%, 92%)'
+            : 'hsl(235, 21%, 11%)',
           flex: 1,
-          padding: '40px'
-        }} className='dark'
+          padding: '40px',
+        }}
+        className="dark"
       ></div>{' '}
       <div className="box">
         <div className="flex todo">
           <h1>TODO</h1>
           <img src={sun} alt="sun icon" onClick={handleLightModeChange} />
         </div>
-        <div className="flex inp" style={{backgroundColor: lightMode ? '#f0f4f6' : '#25273c'}}>
+        <div
+          className="flex inp"
+          style={{ backgroundColor: lightMode ? '#f0f4f6' : '#25273c' }}
+        >
           <div>
             <input
               type="text"
               placeholder="Create a new todo..."
               value={inputText}
               onChange={handleChange}
-              style={{backgroundColor: lightMode ? '#f0f4f6' : '#25273c', color: lightMode ? 'hsl(235, 19%, 35%)': 'hsl(0, 0%, 98%)'}}
+              style={{
+                backgroundColor: lightMode ? '#f0f4f6' : '#25273c',
+                color: lightMode ? 'hsl(235, 19%, 35%)' : 'hsl(0, 0%, 98%)',
+              }}
             />
           </div>
           <button onClick={addItem}>ADD</button>
         </div>
-        <div className="ctn" style={{backgroundColor: lightMode ? '#f0f4f6' : '#25273c'}}>
+        <div
+          className="ctn"
+          style={{ backgroundColor: lightMode ? '#f0f4f6' : '#25273c' }}
+        >
           {filteredItems.map((todoItem, index) => (
             <div className="flex ctn1" key={index}>
               <div className="flex2">
@@ -152,7 +175,7 @@ function App() {
                     textDecoration: todoItem.completed
                       ? 'line-through'
                       : 'none',
-                      color: lightMode ? 'hsl(235, 19%, 35%)': 'hsl(0, 0%, 98%)'
+                    color: lightMode ? 'hsl(235, 19%, 35%)' : 'hsl(0, 0%, 98%)',
                   }}
                 >
                   {todoItem.text}
@@ -172,12 +195,42 @@ function App() {
             </div>
             <div className="flex2">
               {/* Filter buttons */}
-              <p onClick={() => handleFilter('All')} style={{color: filter ==='All' ? 'hsl(220, 98%, 61%)' : 'inherit'}} className={filter !== 'All' ? 'hovers' : ''}>All</p>
-              <p onClick={() => handleFilter('Active')} style={{color: filter ==='Active' ? 'hsl(220, 98%, 61%)' : 'inherit'}} className={filter !== 'Active' ? 'hovers' : ''}>Active</p>
-              <p onClick={() => handleFilter('Completed')} style={{color: filter ==='Completed' ? 'hsl(220, 98%, 61%)' : 'inherit'}} className={filter !== 'Completed' ? 'hovers' : ''}>Completed</p>
+              <p
+                onClick={() => handleFilter('All')}
+                style={{
+                  color: filter === 'All' ? 'hsl(220, 98%, 61%)' : 'inherit',
+                }}
+                className={filter !== 'All' ? 'hovers' : ''}
+              >
+                All
+              </p>
+              <p
+                onClick={() => handleFilter('Active')}
+                style={{
+                  color: filter === 'Active' ? 'hsl(220, 98%, 61%)' : 'inherit',
+                }}
+                className={filter !== 'Active' ? 'hovers' : ''}
+              >
+                Active
+              </p>
+              <p
+                onClick={() => handleFilter('Completed')}
+                style={{
+                  color:
+                    filter === 'Completed' ? 'hsl(220, 98%, 61%)' : 'inherit',
+                }}
+                className={filter !== 'Completed' ? 'hovers' : ''}
+              >
+                Completed
+              </p>
             </div>
             <div>
-              <p onClick={clearCompleted} className={lightMode ? 'no-hover' : 'hovers'}>Clear Completed</p>
+              <p
+                onClick={clearCompleted}
+                className={lightMode ? 'no-hover' : 'hovers'}
+              >
+                Clear Completed
+              </p>
             </div>
           </div>
         </div>
@@ -185,5 +238,5 @@ function App() {
     </div>
   );
 }
- 
+
 export default App;

@@ -1,0 +1,177 @@
+body {
+  overflow-x: hidden;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flex2 {
+  display: flex;
+  flex-direction: row;
+}
+
+/* .bg img{
+    width: 100%;
+} */
+
+.box {
+  position: absolute;
+  z-index: 10;
+  top: 2.5rem;
+  width: 36%;
+  left: 31%;
+}
+
+.todo {
+  color: white;
+}
+
+.todo img {
+  width: 5%;
+  height: 5%;
+  margin-top: 40px;
+}
+
+.todo h1 {
+  font-size: 40px;
+  letter-spacing: 10px;
+}
+
+.circle {
+  border: 1px solid hsl(237, 14%, 26%);
+  width: 10px;
+  height: 10px;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.inp {
+  background-color: hsl(235, 24%, 19%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  height: 35px;
+}
+
+.inp input {
+  background-color: hsl(235, 24%, 19%);
+  height: 100%;
+  border: none;
+  outline: none;
+  color: hsl(0, 0%, 98%);
+  margin-top: -2px;
+  width: 20rem;
+}
+
+.inp button {
+  background-color: hsl(235, 21%, 11%);
+  border: none;
+  padding: 4px 20px;
+  color: hsl(234, 39%, 85%);
+  border-radius: 5px;
+}
+
+.inp input::placeholder {
+  font-size: 14px;
+  color: hsl(233, 11%, 84%);
+}
+
+.ctn {
+  background-color: hsl(235, 24%, 19%);
+  margin-top: 1.5rem;
+  border-radius: 5px;
+
+}
+
+.ctn1 {
+  border-bottom: 1px solid hsl(233, 14%, 35%);
+  padding: 17px 20px;
+  font-size: 14px;
+}
+
+.ctn1 span {
+  color: hsl(234, 39%, 85%);
+  padding-left: 15px;
+  padding-left: 15px;
+}
+
+.last {
+  color: hsl(234, 11%, 52%);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px 20px;
+}
+
+.last .flex2 p {
+  margin-left: 10px;
+}
+
+.hovers:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.no-hover:hover {
+  cursor: pointer;
+  color: hsl(235, 19%, 35%);
+}
+
+.selected {
+  /* background: linear-gradient ( hsl(192, 100%, 67%) to hsl(280, 87%, 65%))
+    ; */
+  background: url("./images/icon-check.svg") no-repeat, linear-gradient(hsl(192, 100%, 67%),
+      hsl(280, 87%, 65%));
+  border: 1px solid hsl(237, 14%, 26%);
+  width: 10px;
+  height: 10px;
+  padding: 4px;
+  border-radius: 50%;
+  background-position: 50%;
+}
+
+/* .selected::before{
+    content: "\2713";
+    color: white;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 5px;
+} */
+
+@media screen and (max-width:768px) {
+  .bg {
+    background-position-x: 30%;
+  }
+
+  .box {
+    left: 1rem;
+    width: 92%;
+  }
+
+  .todo img {
+    width: 10%;
+    margin-top: 40px;
+  }
+
+  .inp {
+    padding: 10px 20px;
+  }
+
+  .inp input {
+    width: 12.5rem;
+    margin-right: 2rem;
+    font-size: 18px;
+    padding: 2px;
+  }
+  .inp input::placeholder{
+    font-size: 17px;
+  }
+  .last{
+    padding: 10px 15px;
+  }
+  .dark {
+    margin-top: -20rem;
+
+  }
+}
